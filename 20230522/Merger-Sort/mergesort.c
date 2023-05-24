@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int comparisons = 0;
+int swaps = 0;
+
 void intercala(int* array, int start, int middle, int end) {
     int temp[end - start];
 
@@ -9,11 +12,13 @@ void intercala(int* array, int start, int middle, int end) {
     int k = 0;
 
     while (i < middle && j < end) {
-        if (array[i] <= array[j]) {
+        comparisons++;
+        if (array[i] >= array[j]) {
             temp[k++] = array[i++];
         }
         else {
             temp[k++] = array[j++];
+            swaps++;
         }
     }
 
@@ -44,35 +49,35 @@ void mergeSortRecursive(int* array, int start, int end){
     return;
 }
 
-void mergeSort(int* array) {
-    if (0 < sizeof(array) - 1) {
-        int middle = (0 + sizeof(array)) / 2;
-        mergeSortRecursive(array, 0, sizeof(array));
+void mergeSort(int* array, int size) {
+    if (size > 1) {
+        mergeSortRecursive(array, 0, size);
     }
     return;
 }
 
-
-void printArr(int* array) {
-    int size = sizeof array;
-
-    for (int i=0; i < size; i++) printf("%d ", array[i]);
+void printArr(int* array, int size) {
+    for (int i = 0; i < size; i++) {
+        printf("%d ", array[i]);
+    }
     printf("\n");
     return;
 }
 
 int main() {
     int arrSize = 8;
-    int array[] = {2, 8, 3, 4, 3, 7, 1, 9};
+    int array[] = {20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1};
 
-    printArr(array);
-
+    printf("Array original:\n");
+    printArr(array, arrSize);
     printf("\n");
-    mergeSort(array);
 
-    for (int i = 0; i < arrSize; i++) {
-        printf("%d ", *(array + i));
-    }
-    printf("\n");
-    return 1;
+    mergeSort(array, arrSize);
+
+    printf("Array ordenado em ordem crescente:\n");
+    printArr(array, arrSize);
+    printf("Número total de comparações: %d\n", comparisons);
+    printf("Número total de trocas: %d\n", swaps);
+
+    return 0;
 }

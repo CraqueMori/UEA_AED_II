@@ -1,24 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int comparisons = 0;
+int swaps = 0;
+
 int partition(int* array, int start, int end) {
     int temp;
     int pivot = array[end];
     int i = start - 1;
 
-    // Leva os valores maiores que o pivô para depois de I
     for (int j = start; j <= end - 1; j++)
     {
-        if (array[j] <= pivot)
+        comparisons++;
+        if (array[j] >= pivot)
         {
             i++;
             temp = array[i];
             array[i] = array[j];
             array[j] = temp;
+            swaps++;
         }
     }
 
-    // Retorna o novo pivô
     temp = array[i + 1];
     array[i + 1] = array[end];
     array[end] = temp;
@@ -40,20 +43,27 @@ void quickSort(int* array, int arraySize) {
 }
 
 void printArr(int* array, int size) {
-    for (int i=0; i < size; i++) printf("%d ", array[i]);
+    for (int i = 0; i < size; i++) {
+        printf("%d ", array[i]);
+    }
     printf("\n");
     return;
 }
 
 int main() {
     int arraySize = 10;
-    int array[] = {19, 8, 5, 10, 4, 18, 4, 6, 14, 2};
-    printArr(array, arraySize);
+    int array[] = {20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1};
 
+    printf("Array original:\n");
+    printArr(array, arraySize);
     printf("\n");
+
     quickSort(array, arraySize);
 
+    printf("Array ordenado em ordem decrescente:\n");
     printArr(array, arraySize);
-    printf("\n");
-    return 1;
+    printf("Número total de comparações: %d\n", comparisons);
+    printf("Número total de trocas: %d\n", swaps);
+
+    return 0;
 }

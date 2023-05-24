@@ -1,52 +1,88 @@
-// C program for implementation of selection sort
 #include <stdio.h>
 
-//Definição de Temp
 void swap(int *xp, int *yp)
 {
-	int temp = *xp;
-	*xp = *yp;
-	*yp = temp;
+    int temp = *xp;
+    *xp = *yp;
+    *yp = temp;
 }
 
-void selectionSort(int arr[], int n)
+void selectionSortAscending(int arr[], int n)
 {
-	int i, j, min_idx;
+    int i, j, min_idx;
+    int comparisons = 0;
+    int swaps = 0;
 
-	for (i = 0; i < n-1; i++)
-	{
-		// Encontre o elemento mínimo no array não ordenado
-		min_idx = i;
-		for (j = i+1; j < n; j++)
-		if (arr[j] < arr[min_idx])
-			min_idx = j;
+    for (i = 0; i < n - 1; i++)
+    {
+        min_idx = i;
+        for (j = i + 1; j < n; j++)
+        {
+            comparisons++;
+            if (arr[j] < arr[min_idx])
+                min_idx = j;
+        }
 
-		// Troque o elemento mínimo encontrado com o primeiro elemento
-		if(min_idx != i)
-			swap(&arr[min_idx], &arr[i]);
-	}
+        if (min_idx != i)
+        {
+            swap(&arr[min_idx], &arr[i]);
+            swaps++;
+        }
+    }
+
+    printf("Número total de comparações (Ordem Crescente): %d\n", comparisons);
+    printf("Número total de trocas (Ordem Crescente): %d\n", swaps);
 }
 
-//Função de Impressão de Array
+void selectionSortDescending(int arr[], int n)
+{
+    int i, j, max_idx;
+    int comparisons = 0;
+    int swaps = 0;
+
+    for (i = 0; i < n - 1; i++)
+    {
+        max_idx = i;
+        for (j = i + 1; j < n; j++)
+        {
+            comparisons++;
+            if (arr[j] > arr[max_idx])
+                max_idx = j;
+        }
+
+        if (max_idx != i)
+        {
+            swap(&arr[max_idx], &arr[i]);
+            swaps++;
+        }
+    }
+
+    printf("Número total de comparações (Ordem Decrescente): %d\n", comparisons);
+    printf("Número total de trocas (Ordem Decrescente): %d\n", swaps);
+}
+
 void printArray(int arr[], int size)
 {
-	int i;
-	for (i=0; i < size; i++)
-		printf("%d ", arr[i]);
-	printf("\n");
+    int i;
+    for (i = 0; i < size; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
 }
 
 int main()
 {
-    //Array
-	int arr[] = {64, 25, 12, 22, 11};
-    // Tamanho do Array
-	int n = sizeof(arr)/sizeof(arr[0]);
+    int arr[] = {20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1};
+    int n = sizeof(arr) / sizeof(arr[0]);
 
-    //Chama a Função
-	selectionSort(arr, n);
+    // Ordenação Crescente
+    selectionSortAscending(arr, n);
+    printf("Array Ordenado em ordem Crescente:\n");
+    printArray(arr, n);
 
-	printf("Array Ordenado: \n");
-	printArray(arr, n);
-	return 0;
+    // Ordenação Decrescente
+    selectionSortDescending(arr, n);
+    printf("Array Ordenado em ordem Decrescente:\n");
+    printArray(arr, n);
+
+    return 0;
 }
