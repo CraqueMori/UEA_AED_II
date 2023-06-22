@@ -72,7 +72,10 @@ void printArray(int arr[], int size)
 int main()
 {
     int arr[] = {20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1};
+    int arr2[] = {20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1};
+
     int n = sizeof(arr) / sizeof(arr[0]);
+    int n2 = sizeof(arr2) / sizeof(ar2r[0]);
 
     // Ordenação Crescente
     selectionSortAscending(arr, n);
@@ -80,9 +83,9 @@ int main()
     printArray(arr, n);
 
     // Ordenação Decrescente
-    selectionSortDescending(arr, n);
+    selectionSortDescending(arr2, n2);
     printf("Array Ordenado em ordem Decrescente:\n");
-    printArray(arr, n);
+    printArray(arr2, n2);
 
     return 0;
 }

@@ -23,7 +23,7 @@ void bubbleSort(int array[], int size) {
       }
     }
   }
-#include <stdio.h>
+}
 
 // Função de BubbleSort para ordenação crescente
 void bubbleSortAscending(int array[], int size) {
@@ -90,10 +90,13 @@ void printArray(int array[], int size) {
 }
 
 int main() {
-  int data[] = {20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1};
+  //Insira os dados aqui
+  int data[] = {};
+  int data2[] = {}
   
   // Tamanho do Array
   int size = sizeof(data) / sizeof(data[0]);
+  int size2 = sizeof(data2) / sizeof(data2[0])
 
   // Ordenação Crescente
   bubbleSortAscending(data, size);
@@ -102,36 +105,10 @@ int main() {
   printArray(data, size);
 
   // Ordenação Decrescente
-  bubbleSortDescending(data, size);
+  bubbleSortDescending(data2, size);
 
   printf("Array Ordenado em ordem Decrescente:\n");
-  printArray(data, size);
-  
-  return 0;
-}
-
-  printf("Número total de comparações: %d\n", comparisons);
-  printf("Número total de trocas: %d\n", swaps);
-}
-
-// Print array
-void printArray(int array[], int size) {
-  for (int i = 0; i < size; ++i) {
-    printf("%d  ", array[i]);
-  }
-  printf("\n");
-}
-
-int main() {
-  int data[] = {20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1};
-  
-  // Tamanho do Array
-  int size = sizeof(data) / sizeof(data[0]);
-
-  bubbleSort(data, size);
-  
-  printf("Array Ordenado na ordem Crescente:\n");
-  printArray(data, size);
+  printArray(data2, size2);
   
   return 0;
 }

@@ -9,11 +9,9 @@ int partition(int* array, int start, int end) {
     int pivot = array[end];
     int i = start - 1;
 
-    for (int j = start; j <= end - 1; j++)
-    {
+    for (int j = start; j <= end - 1; j++) {
         comparisons++;
-        if (array[j] >= pivot)
-        {
+        if (array[j] >= pivot) {
             i++;
             temp = array[i];
             array[i] = array[j];
@@ -34,12 +32,10 @@ void quickSortRecursion(int* array, int start, int end) {
         quickSortRecursion(array, start, pivot - 1);
         quickSortRecursion(array, pivot + 1, end);
     }
-    return;
 }
 
 void quickSort(int* array, int arraySize) {
     quickSortRecursion(array, 0, arraySize - 1);
-    return;
 }
 
 void printArr(int* array, int size) {
@@ -47,18 +43,28 @@ void printArr(int* array, int size) {
         printf("%d ", array[i]);
     }
     printf("\n");
-    return;
+}
+
+void quickSortDescending(int* array, int arraySize) {
+    quickSort(array, arraySize);
+    // Inverte a ordem do array para obter a ordem decrescente
+    for (int i = 0; i < arraySize / 2; i++) {
+        int temp = array[i];
+        array[i] = array[arraySize - i - 1];
+        array[arraySize - i - 1] = temp;
+    }
 }
 
 int main() {
-    int arraySize = 10;
-    int array[] = {20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1};
+    int arraySize = 20;
+    int array[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 
     printf("Array original:\n");
     printArr(array, arraySize);
     printf("\n");
-
-    quickSort(array, arraySize);
+    //Troca para quicksort, caso queira crescente
+    //quickSort()
+    quickSortDescending(array, arraySize);
 
     printf("Array ordenado em ordem decrescente:\n");
     printArr(array, arraySize);

@@ -1,86 +1,57 @@
 #include <stdio.h>
 
-// Função de BubbleSort para ordenação crescente
-void bubbleSortAscending(int array[], int size) {
-  int comparisons = 0;
-  int swaps = 0;
+void insertionSortAscending(int* array, int size) {
+    for (int i = 1; i < size; i++) {
+        int key = array[i];
+        int j = i - 1;
 
-  // Loop de Acesso 
-  for (int step = 0; step < size - 1; ++step) {
-      
-    // Comparação dos Elementos
-    for (int i = 0; i < size - step - 1; ++i) {
-      
-      // Comparação de Elementos Adjacentes
-      comparisons++;
-      if (array[i] > array[i + 1]) {
-        
-        // Realiza a troca
-        int temp = array[i];
-        array[i] = array[i + 1];
-        array[i + 1] = temp;
-        swaps++;
-      }
+        while (j >= 0 && array[j] > key) {
+            array[j + 1] = array[j];
+            j--;
+        }
+
+        array[j + 1] = key;
     }
-  }
-
-  printf("Número total de comparações: %d\n", comparisons);
-  printf("Número total de trocas: %d\n", swaps);
 }
 
-// Função de BubbleSort para ordenação decrescente
-void bubbleSortDescending(int array[], int size) {
-  int comparisons = 0;
-  int swaps = 0;
+void insertionSortDescending(int* array, int size) {
+    for (int i = 1; i < size; i++) {
+        int key = array[i];
+        int j = i - 1;
 
-  // Loop de Acesso 
-  for (int step = 0; step < size - 1; ++step) {
-      
-    // Comparação dos Elementos
-    for (int i = 0; i < size - step - 1; ++i) {
-      
-      // Comparação de Elementos Adjacentes
-      comparisons++;
-      if (array[i] < array[i + 1]) {
-        
-        // Realiza a troca
-        int temp = array[i];
-        array[i] = array[i + 1];
-        array[i + 1] = temp;
-        swaps++;
-      }
+        while (j >= 0 && array[j] < key) {
+            array[j + 1] = array[j];
+            j--;
+        }
+
+        array[j + 1] = key;
     }
-  }
-
-  printf("Número total de comparações: %d\n", comparisons);
-  printf("Número total de trocas: %d\n", swaps);
 }
 
-// Print array
-void printArray(int array[], int size) {
-  for (int i = 0; i < size; ++i) {
-    printf("%d  ", array[i]);
-  }
-  printf("\n");
+void printArray(int* array, int size) {
+    for (int i = 0; i < size; i++) {
+        printf("%d ", array[i]);
+    }
+    printf("\n");
 }
 
 int main() {
-  int data[] = {20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1};
-  
-  // Tamanho do Array
-  int size = sizeof(data) / sizeof(data[0]);
+    int arraySize = 20;
+    int array[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 
-  // Ordenação Crescente
-  bubbleSortAscending(data, size);
-  
-  printf("Array Ordenado em ordem Crescente:\n");
-  printArray(data, size);
+    printf("Array original:\n");
+    printArray(array, arraySize);
+    printf("\n");
 
-  // Ordenação Decrescente
-  bubbleSortDescending(data, size);
+    insertionSortAscending(array, arraySize);
 
-  printf("Array Ordenado em ordem Decrescente:\n");
-  printArray(data, size);
-  
-  return 0;
+    printf("Array ordenado em ordem crescente:\n");
+    printArray(array, arraySize);
+
+    insertionSortDescending(array, arraySize);
+
+    printf("Array ordenado em ordem decrescente:\n");
+    printArray(array, arraySize);
+
+    return 0;
 }
